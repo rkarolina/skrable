@@ -19,12 +19,24 @@ body {
   gap: 16px;
 }
 
+
 .game-title {
-  font-size: 2.5rem;
+  font-size: 25px;
   color: #3333cc;
   margin-bottom: 8px;
+  margin-top: 12px;
   letter-spacing: 2px;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .game-title {
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
 }
 
 .controls {
