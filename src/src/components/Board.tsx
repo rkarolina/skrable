@@ -11,21 +11,25 @@ interface BoardProps {
 }
 
 const Board: React.FC<BoardProps> = ({ board, onTileClick }) => {
+  const centerRow = 7;
+  const centerCol = 7;
   return (
     <div className="board">
-      {board.map((row, rowIndex) => (
-        <div className="board-row" key={rowIndex}>
-          {row.map((tile, colIndex) => (
+      {board.flatMap((row, rowIndex) =>
+        row.map((tile, colIndex) => {
+          const isCenter = rowIndex === centerRow && colIndex === centerCol;
+          return (
             <div
-              className="board-tile"
-              key={colIndex}
+              className={`board-tile${isCenter ? " center-tile" : ""}`}
+              key={`${rowIndex}-${colIndex}`}
               onClick={() => onTileClick(rowIndex, colIndex)}
             >
-              {tile.letter}
+              {isCenter && !tile.letter ? <span className="center-star">★</span> : null}
+              <span>{tile.letter}</span>
             </div>
-          ))}
-        </div>
-      ))}
+          );
+        })
+      )}
     </div>
   );
 };
